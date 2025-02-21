@@ -67,15 +67,15 @@ class KategoriController extends Controller
 
             $kategori->save();
 
-            return redirect()->route('kategori.index')->with('msg', 'Kategori berhasil ditambahkan');
+            return redirect()->route('kategori.index')->with('msg', 'Category has been successfully added.');
         } catch (\Exception $e) {
             // Log the full error
-            Log::error('Kategori store error: ' . $e->getMessage());
+            Log::error('Category store error: ' . $e->getMessage());
             Log::error($e->getTraceAsString());
 
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Gagal menyimpan kategori: ' . $e->getMessage());
+                ->with('error', 'Failed to save: ' . $e->getMessage());
         }
     }
 
@@ -142,7 +142,7 @@ class KategoriController extends Controller
 
             $kategori->save();
 
-            return redirect()->route('kategori.index')->with('msg', 'Kategori berhasil diperbarui');
+            return redirect()->route('kategori.index')->with('msg', 'Category has been successfully updated.');
         } catch (\Exception $e) {
             // Log the full error
             Log::error('Kategori update error: ' . $e->getMessage());
@@ -150,7 +150,7 @@ class KategoriController extends Controller
 
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Gagal memperbarui kategori: ' . $e->getMessage());
+                ->with('error', 'Failed to update: ' . $e->getMessage());
         }
     }
 
@@ -168,6 +168,6 @@ class KategoriController extends Controller
 
         $kategori->delete();
 
-        return redirect()->route('kategori.index')->with('msg', 'Kategori berhasil dihapus');
+        return redirect()->route('kategori.index')->with('msg', 'Category has been successfully deleted.');
     }
 }

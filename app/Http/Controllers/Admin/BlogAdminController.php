@@ -69,7 +69,7 @@ class BlogAdminController extends Controller
 
             $blog->save();
 
-            return redirect()->route('blog.index')->with('msg', 'Blog berhasil ditambahkan');
+            return redirect()->route('blog.index')->with('msg', 'Blog successfully added');
         } catch (\Exception $e) {
             // Log the full error
             Log::error('blog store error: ' . $e->getMessage());
@@ -146,7 +146,7 @@ class BlogAdminController extends Controller
 
             $blog->save();
 
-            return redirect()->route('blog.index')->with('msg', 'Blog berhasil diperbarui');
+            return redirect()->route('blog.index')->with('msg', 'Blog successfully updated');
         } catch (\Exception $e) {
             // Log the full error
             Log::error('Blog update error: ' . $e->getMessage());
@@ -172,6 +172,6 @@ class BlogAdminController extends Controller
 
         $blog->delete();
 
-        return redirect()->route('blog.index')->with('msg', 'Blog berhasil dihapus');
+        return redirect()->route('blog.index')->with('msg', 'Blog successfully deleted');
     }
 }

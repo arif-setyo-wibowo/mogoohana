@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span> Pembelian</h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span> Purchase</h4>
 
     <div class="card mb-4">
         <div class="card-header p-0">
@@ -67,7 +67,7 @@
                         <button type="button" class="nav-link waves-effect active" role="tab" data-bs-toggle="tab"
                             data-bs-target="#navs-top-home" aria-controls="navs-top-home" aria-selected="false"
                             tabindex="-1">
-                            Produk
+                            Product
                         </button>
                     </li>
                     <span class="tab-slider" style="left: 91.1528px; width: 107.111px; bottom: 0px;"></span>
@@ -81,11 +81,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nomer Order</th>
+                                <th>Order Number</th>
                                 <th>Email</th>
-                                <th>Tanggal Order</th>
-                                <th>Total Harga</th>
-                                <th>Bukti Transfer</th>
+                                <th>Order Date</th>
+                                <th>Total Price</th>
+                                <th>Payment Proof</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -111,12 +111,12 @@
                                     <button type="button" class="btn btn-success btn-sm open-modal"
                                         data-bs-toggle="modal" data-bs-target="#modalProduk{{ $pembelian->id }}"
                                         alt="Produk">
-                                        <i class="mdi mdi-information"></i> Detail Produk
+                                        <i class="mdi mdi-information"></i>  Product Details
                                     </button>
                                     @if($pembelian->status == 'pending')
                                     <button type="button" class="btn btn-info btn-sm"
                                         data-bs-toggle="modal" data-bs-target="#modalKonfirmasi{{ $pembelian->id }}">
-                                        <i class="mdi mdi-thumb-up"></i> Konfirmasi
+                                        <i class="mdi mdi-thumb-up"></i> Confirmation
                                     </button>
                                     @endif
                                 </td>
@@ -135,13 +135,13 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Bukti Pembayaran - Order #{{ $pembelian->nomer_order }}</h4>
+                    <h4 class="modal-title">Payment Proof - Order #{{ $pembelian->nomer_order }}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col mb-4 mt-2">
-                            <img src="{{ asset('storage/' . $pembelian->bukti_transfer) }}" alt="Bukti Pembayaran"
+                            <img src="{{ asset('storage/' . $pembelian->bukti_transfer) }}" alt="Payment Proof"
                                 width="100%">
                         </div>
                     </div>
@@ -158,28 +158,28 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Detail Produk Dibeli - Order #{{ $pembelian->nomer_order }}</h4>
+                    <h4 class="modal-title">Purchased Product Details - Order #{{ $pembelian->nomer_order }}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <h5>Informasi Order</h5>
-                            <p><strong>Nomor Order:</strong> {{ $pembelian->nomer_order }}</p>
-                            <p><strong>Tanggal Order:</strong>
+                            <h5>Order Information</h5>
+                            <p><strong>Order Number:</strong> {{ $pembelian->nomer_order }}</p>
+                            <p><strong>Order Date:</strong>
                                 {{ \Carbon\Carbon::parse($pembelian->tanggal_order)->format('d F Y') }}</p>
                             <p><strong>Email:</strong> {{ $pembelian->email }}</p>
                         </div>
                         <div class="col-md-6">
-                            <h5>Ringkasan Pembayaran</h5>
-                            <p><strong>Total Harga:</strong> $ {{ number_format($pembelian->total_harga, 0, ',', '.') }}
+                            <h5>Payment Summary</h5>
+                            <p><strong>Total Price:</strong> $ {{ number_format($pembelian->total_harga, 0, ',', '.') }}
                             </p>
                             <p><strong>Status:</strong> {{ $pembelian->status == 'pending' ? 'Pending' : 'Complete' }}
                             </p>
-                            <p><strong>Methode Pembayaran: </strong> {{ $pembelian->metode_pembayaran }}</p>
+                            <p><strong>Payment Method:</strong> {{ $pembelian->metode_pembayaran }}</p>
                         </div>
                         <div class="col-md-6">
-                            <h5>Ringkasan Akun</h5>
+                            <h5>Account Summary</h5>
                             <p><strong>Username:</strong> {{ $pembelian->username }}</p>
                             <p><strong>Facebook:</strong> {{ $pembelian->facebook }}</p>
                             <p><strong>Link:</strong><a href="{{ $pembelian->link }}">{{ $pembelian->link }}</a></p>
@@ -190,10 +190,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Produk</th>
-                                    <th>Jumlah</th>
-                                    <th>Harga Satuan</th>
-                                    <th>Total Harga</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Price</th>
+                                    <th>Total Price</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -222,17 +222,17 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Konfirmasi Pembelian</h5>
+                    <h5 class="modal-title">Purchase Confirmation</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('admin.pembelian.konfirmasi', $pembelian->id) }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <p>Apakah Anda yakin ingin mengkonfirmasi pembelian ini?</p>
+                        <p>Are you sure you want to confirm this purchase?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Ya, Konfirmasi</button>
+                        <button type="submit" class="btn btn-primary">Yes, Confirm</button>
                     </div>
                 </form>
             </div>

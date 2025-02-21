@@ -90,12 +90,12 @@ class PembelianController extends Controller
             DB::commit();
 
             return redirect()->route('admin.pembelian.index')
-                ->with('success', "Status pembelian berhasil diubah menjadi {$validatedData['status']}");
+                ->with('success', "Purchase status has been successfully changed to {$validatedData['status']}");
 
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()
-                ->with('error', 'Gagal mengubah status pembelian: ' . $e->getMessage());
+                ->with('error', 'Failed to change purchase status : ' . $e->getMessage());
         }
     }
 
@@ -120,6 +120,6 @@ class PembelianController extends Controller
         Mail::to($user)->send(new OrderConfirmationMail($pembelian));
 
         return redirect()->route('pembelian.index')
-            ->with('msg', 'Pembelian berhasil dikonfirmasi dan email notifikasi telah dikirim.');
+            ->with('msg', 'Purchase has been successfully confirmed, and a notification email has been sent.');
     }
 }

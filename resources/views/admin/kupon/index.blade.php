@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span> Kupon</h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span> Coupon</h4>
 
     <div class="card mb-4">
         <div class="card-header p-0">
@@ -61,7 +61,7 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button type="button" class="nav-link waves-effect active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-home" aria-controls="navs-top-home" aria-selected="false" tabindex="-1">
-                     Kupon
+                     Coupon
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
@@ -79,15 +79,15 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kode</th>
-                            <th>Tipe</th>
-                            <th>Nilai</th>
-                            <th>Tanggal Mulai</th>
-                            <th>Tanggal Berakhir</th>
-                            <th>Jumlah Kupon</th>
-                            <th>Sisa</th>
+                            <th>Code</th>
+                            <th>Type</th>
+                            <th>Value</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Coupon Quantity</th>
+                            <th>Remaining</th>
                             <th>Status</th>
-                            <th>Aksi</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,62 +124,62 @@
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <div class="form-floating form-floating-outline">
-                                <input type="text" class="form-control" id="kode" name="kode" placeholder="Kode Kupon" required value="{{ old('kode') }}"/>
-                                <label for="kode">Kode Kupon</label>
+                                <input type="text" class="form-control" id="kode" name="kode" placeholder="Coupon Code" required value="{{ old('kode') }}"/>
+                                <label for="kode">Coupon Code</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-floating form-floating-outline">
                                 <select class="form-select" id="tipe" name="tipe" required>
-                                    <option value="persen" {{ old('tipe') == 'persen' ? 'selected' : '' }}>Persentase</option>
+                                    <option value="persen" {{ old('tipe') == 'persen' ? 'selected' : '' }}>Percentage</option>
                                     <option value="nominal" {{ old('tipe') == 'nominal' ? 'selected' : '' }}>Nominal</option>
                                 </select>
-                                <label for="tipe">Tipe Kupon</label>
+                                <label for="tipe">Coupon Type</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-floating form-floating-outline">
-                                <input type="number" step="0.01" class="form-control" id="nilai" name="nilai" placeholder="Nilai Kupon" required value="{{ old('nilai') }}"/>
-                                <label for="nilai">Nilai Kupon</label>
+                                <input type="number" step="0.01" class="form-control" id="nilai" name="nilai" placeholder="Coupon Value" required value="{{ old('nilai') }}"/>
+                                <label for="nilai">Coupon Value</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-floating form-floating-outline">
-                                <input type="number" step="0.01" class="form-control" id="minimal_belanja" name="minimal_belanja" placeholder="Minimal Belanja" value="{{ old('minimal_belanja', 0) }}"/>
-                                <label for="minimal_belanja">Minimal Belanja</label>
+                                <input type="number" step="0.01" class="form-control" id="minimal_belanja" name="minimal_belanja" placeholder="Minimum Purchase" value="{{ old('minimal_belanja', 0) }}"/>
+                                <label for="minimal_belanja">Minimum Purchase</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-floating form-floating-outline">
                                 <input type="date" class="form-control" id="tanggal_mulai" name="tanggal_mulai" value="{{ old('tanggal_mulai') }}"/>
-                                <label for="tanggal_mulai">Tanggal Mulai</label>
+                                <label for="tanggal_mulai">Start Date</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-floating form-floating-outline">
                                 <input type="date" class="form-control" id="tanggal_berakhir" name="tanggal_berakhir" value="{{ old('tanggal_berakhir') }}"/>
-                                <label for="tanggal_berakhir">Tanggal Berakhir</label>
+                                <label for="tanggal_berakhir">End Date</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-floating form-floating-outline">
-                                <input type="number" class="form-control" id="jumlah_kupon" name="jumlah_kupon" placeholder="Jumlah Kupon" required value="{{ old('jumlah_kupon', 0) }}"/>
-                                <label for="jumlah_kupon">Jumlah Kupon</label>
+                                <input type="number" class="form-control" id="jumlah_kupon" name="jumlah_kupon" placeholder="Coupon Quantity" required value="{{ old('jumlah_kupon', 0) }}"/>
+                                <label for="jumlah_kupon">Coupon Quantity</label>
                             </div>
                         </div>
                         <div class="col-md-6 mb-4">
                             <div class="form-floating form-floating-outline">
                                 <select class="form-select" id="status" name="status" required>
-                                    <option value="aktif" {{ old('status', 'aktif') == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                                    <option value="non-aktif" {{ old('status') == 'non-aktif' ? 'selected' : '' }}>Non-Aktif</option>
+                                    <option value="aktif" {{ old('status', 'aktif') == 'aktif' ? 'selected' : '' }}>Active</option>
+                                    <option value="non-aktif" {{ old('status') == 'non-aktif' ? 'selected' : '' }}>Inactive</option>
                                 </select>
                                 <label for="status">Status</label>
                             </div>
                         </div>
                         <div class="col-12 mb-4">
                             <div class="form-floating form-floating-outline">
-                                <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Deskripsi Kupon" rows="3">{{ old('deskripsi') }}</textarea>
-                                <label for="deskripsi">Deskripsi Kupon</label>
+                                <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Coupon Description" rows="3">{{ old('deskripsi') }}</textarea>
+                                <label for="deskripsi">Coupon Description</label>
                             </div>
                         </div>
                     </div>

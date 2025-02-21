@@ -26,9 +26,9 @@ class LoginAdminController extends Controller
             'username' => 'required',
             'password' => 'required',
         ],[
-            'username.required' => 'Username admin harus diisi.',
-            'username.username' => 'Username admin tidak valid.',
-            'password.required' => 'Kata sandi admin harus diisi.',
+            'username.required' => 'Admin username is required.',
+            'username.username' => 'Admin username is not valid.',
+            'password.required' => 'Admin password is required.',
         ]);
 
         $user = Admin::where('username', $request->username)->first();
@@ -48,10 +48,10 @@ class LoginAdminController extends Controller
                 return redirect()->route('dashboard.index');
 
             } else {
-                return redirect()->route('login')->withErrors(['error' => 'Password salah'])->withInput();
+                return redirect()->route('login')->withErrors(['error' => 'Wrong Password'])->withInput();
             }
         } else {
-            return redirect()->route('login')->withErrors(['error' => 'Email tidak ditemukan'])->withInput();
+            return redirect()->route('login')->withErrors(['error' => 'Email not found'])->withInput();
         }
 
     }

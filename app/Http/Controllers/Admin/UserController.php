@@ -69,10 +69,10 @@ class UserController extends Controller
         try {
             $user = User::findOrFail($id);
             $user->delete();
-            
-            return redirect()->route('user-admin.index')->with('msg', 'User berhasil dihapus');
+
+            return redirect()->route('user-admin.index')->with('msg', 'User has been successfully deleted.');
         } catch (\Exception $e) {
-            return redirect()->route('user-admin.index')->with('error', 'Gagal menghapus user');
+            return redirect()->route('user-admin.index')->with('error', 'Failed to delete user.');
         }
     }
 }

@@ -119,12 +119,12 @@ class ShopCartController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Kuantitas berhasil diperbarui'
+                'message' => 'Quantity successfully updated'
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Gagal memperbarui kuantitas: ' . $e->getMessage()
+                'message' => 'Failed to update quantity: ' . $e->getMessage()
             ], 500);
         }
     }
@@ -146,12 +146,12 @@ class ShopCartController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Produk berhasil dihapus dari keranjang'
+                'message' => 'Product successfully removed from cart.'
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Gagal menghapus produk dari keranjang: ' . $e->getMessage()
+                'message' => 'Failed to remove product from cart: ' . $e->getMessage()
             ], 500);
         }
     }
@@ -171,13 +171,13 @@ class ShopCartController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Keranjang berhasil dikosongkan',
+                'message' => 'Cart successfully emptied',
                 'deleted_count' => $deletedCount
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => 'Gagal mengosongkan keranjang: ' . $e->getMessage()
+                'message' => 'Failed to emptied Cart : ' . $e->getMessage()
             ], 500);
         }
     }
@@ -211,7 +211,7 @@ class ShopCartController extends Controller
         $cartItems = Cart::getCartItems();
 
         if ($cartItems->isEmpty()) {
-            return redirect()->route('home')->with('error', 'Keranjang Anda kosong. Silakan tambahkan produk terlebih dahulu.');
+            return redirect()->route('home')->with('error', 'Your cart is empty. Please add products first');
         }
 
         $total = Cart::calculateTotal();

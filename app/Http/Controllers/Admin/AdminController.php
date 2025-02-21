@@ -45,7 +45,7 @@ class AdminController extends Controller
         $admin->username = $request->username;
         $admin->password = Hash::make($request->password);
         $admin->save();
-        Session::flash('msg', 'Berhasil Menambah Data');
+        Session::flash('msg', 'Successfully added new data');
         return redirect()->route('admin.index');
     }
 
@@ -100,7 +100,7 @@ class AdminController extends Controller
             $admin->save();
 
 
-            Session::flash('msg', 'Berhasil Mengubah Data');
+            Session::flash('msg', 'Successfully update data');
             return redirect()->route('admin.index');
     }
 
@@ -111,6 +111,6 @@ class AdminController extends Controller
     {
         $admin = Admin::findOrFail($id);
         $admin->delete();
-        return redirect()->route('admin.index')->with('msg', 'Admin berhasil dihapus');
+        return redirect()->route('admin.index')->with('msg', 'Successfully delete data');
     }
 }

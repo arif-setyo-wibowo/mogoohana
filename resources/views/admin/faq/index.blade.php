@@ -79,8 +79,8 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Pertanyaan</th>
-                            <th>Jawaban</th>
+                            <th>Question</th>
+                            <th>Answer</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -113,12 +113,12 @@
                 <form action="{{ route('faq.store')}}" method="POST" >
                     @csrf
                     <div class="form-floating form-floating-outline mb-4">
-                        <textarea type="text" class="form-control" id="basic-default-fullname" name="pertanyaan" placeholder="Pertanyaan" required></textarea>
-                        <label for="basic-default-fullname">Pertanyaan</label>
+                        <textarea type="text" class="form-control" id="basic-default-fullname" name="pertanyaan" placeholder="Question" required></textarea>
+                        <label for="basic-default-fullname">Question</label>
                     </div>
                     <div class="form-floating form-floating-outline mb-4">
-                        <textarea type="text" class="form-control" id="basic-default-fullname" name="jawaban" placeholder="Jawaban" required></textarea>
-                        <label for="basic-default-fullname">Jawaban</label>
+                        <textarea type="text" class="form-control" id="basic-default-fullname" name="jawaban" placeholder="Answer" required></textarea>
+                        <label for="basic-default-fullname">Answer</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Store</button>
                 </form>

@@ -75,7 +75,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
+                                <th>Name</th>
                                 <th>Email</th>
                                 <th>Action</th>
                             </tr>

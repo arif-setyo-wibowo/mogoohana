@@ -40,11 +40,11 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended(route('home.index'))
-                ->with('success', 'Login berhasil!');
+                ->with('success', 'Login successfully!');
         }
 
         return redirect()->back()
-            ->withErrors(['email' => 'Email atau password salah'])
+            ->withErrors(['email' => 'Wrong email or password'])
             ->withInput($request->only('email'));
     }
 
@@ -92,7 +92,7 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('home.index')
-            ->with('success', 'Anda berhasil logout');
+            ->with('success', 'You successfully logout');
     }
 
     /**

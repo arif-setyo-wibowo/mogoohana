@@ -50,8 +50,8 @@ class KuponController extends Controller
             'status' => 'required|in:aktif,non-aktif',
             'deskripsi' => 'nullable|string'
         ], [
-            'kode.unique' => 'Kode kupon sudah digunakan.',
-            'tanggal_berakhir.after_or_equal' => 'Tanggal berakhir harus sama atau setelah tanggal mulai.'
+            'kode.unique' => 'Coupon already used',
+            'tanggal_berakhir.after_or_equal' => 'End date should equal or after start date'
         ]);
 
         if ($validator->fails()) {
@@ -64,10 +64,10 @@ class KuponController extends Controller
             Kupon::create($validator->validated());
 
             return redirect()->route('kupon.index')
-                ->with('msg', 'Kupon berhasil ditambahkan');
+                ->with('msg', 'Coupon has been successfully added.');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Gagal menambahkan kupon: ' . $e->getMessage())
+                ->with('error', 'failed to added coupon: ' . $e->getMessage())
                 ->withInput();
         }
     }
@@ -111,8 +111,8 @@ class KuponController extends Controller
             'status' => 'required|in:aktif,non-aktif',
             'deskripsi' => 'nullable|string'
         ], [
-            'kode.unique' => 'Kode kupon sudah digunakan.',
-            'tanggal_berakhir.after_or_equal' => 'Tanggal berakhir harus sama atau setelah tanggal mulai.'
+            'kode.unique' => 'Coupon already used',
+            'tanggal_berakhir.after_or_equal' => 'End date should equal or after start date'
         ]);
 
         if ($validator->fails()) {
@@ -125,10 +125,10 @@ class KuponController extends Controller
             $kupon->update($validator->validated());
 
             return redirect()->route('kupon.index')
-                ->with('msg', 'Kupon berhasil diperbarui');
+                ->with('msg', 'Coupon has been successfully update.');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Gagal memperbarui kupon: ' . $e->getMessage())
+                ->with('error', 'Failed to update coupon: ' . $e->getMessage())
                 ->withInput();
         }
     }
@@ -143,10 +143,10 @@ class KuponController extends Controller
             $kupon->delete();
 
             return redirect()->route('kupon.index')
-                ->with('msg', 'Kupon berhasil dihapus');
+                ->with('msg', 'Coupon has been successfully deleted.');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Gagal menghapus kupon: ' . $e->getMessage());
+                ->with('error', 'Failed to delete coupon: ' . $e->getMessage());
         }
     }
 }

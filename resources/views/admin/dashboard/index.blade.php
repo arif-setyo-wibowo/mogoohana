@@ -17,9 +17,9 @@
             </div>
             <h4 class="ms-1 mb-0">{{ $totalKategori }}</h4>
           </div>
-          <p class="mb-1">Total Kategori</p>
+          <p class="mb-1">Category Total </p>
           <p class="mb-0">
-            <a href="{{ route('kategori.index') }}" class="text-muted">Lihat Detail</a>
+            <a href="{{ route('kategori.index') }}" class="text-muted">See More</a>
           </p>
         </div>
       </div>
@@ -35,9 +35,9 @@
             </div>
             <h4 class="ms-1 mb-0">{{ $totalProduk }}</h4>
           </div>
-          <p class="mb-1">Total Produk</p>
+          <p class="mb-1">Product Total</p>
           <p class="mb-0">
-            <a href="{{ route('produk.index') }}" class="text-muted">Lihat Detail</a>
+            <a href="{{ route('produk.index') }}" class="text-muted">See More</a>
           </p>
         </div>
       </div>
@@ -53,9 +53,9 @@
             </div>
             <h4 class="ms-1 mb-0">{{ $totalPembelian }}</h4>
           </div>
-          <p class="mb-1">Total Pembelian</p>
+          <p class="mb-1"> Purchase Total</p>
           <p class="mb-0">
-            <a href="{{ route('pembelian.index') }}" class="text-muted">Lihat Detail</a>
+            <a href="{{ route('pembelian.index') }}" class="text-muted">See More</a>
           </p>
         </div>
       </div>
@@ -71,9 +71,9 @@
             </div>
             <h4 class="ms-1 mb-0">{{ $totalUser }}</h4>
           </div>
-          <p class="mb-1">Total User</p>
+          <p class="mb-1"> User Total</p>
           <p class="mb-0">
-            <a href="{{ route('user-admin.index') }}" class="text-muted">Lihat Detail</a>
+            <a href="{{ route('user-admin.index') }}" class="text-muted">See More</a>
           </p>
         </div>
       </div>

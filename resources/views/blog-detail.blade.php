@@ -38,7 +38,7 @@
                     </div>
                     <div class="blog_content">
                         <div class="blog_text">
-                            <p>{!! html_entity_decode($blog->deskripsi) ?? 'Tidak ada deskripsi detail blog.' !!}</p>
+                            <p>{!! html_entity_decode($blog->deskripsi) ?? 'There is no description.' !!}</p>
                         </div>
                     </div>
                     <div class="post_navigation bg_gray">

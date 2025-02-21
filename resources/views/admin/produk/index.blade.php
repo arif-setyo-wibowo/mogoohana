@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span> Produk</h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span> Product</h4>
 
     <div class="card mb-4">
         <div class="card-header p-0">
@@ -68,7 +68,7 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button type="button" class="nav-link waves-effect active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-home" aria-controls="navs-top-home" aria-selected="false" tabindex="-1">
-                     Produk
+                     Product
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
@@ -86,12 +86,12 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Produk</th>
-                            <th>Kategori</th>
-                            <th>Stok</th>
-                            <th>Harga Jual</th>
-                            <th>Harga Dicoret</th>
-                            <th>Gambar</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Stock</th>
+                            <th>Selling Price</th>
+                            <th>Strikethrough Price</th>
+                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -113,7 +113,7 @@
                                     alt="Produk Image"
                                     width="125">
                                 @else
-                                Tidak ada gambar
+                                No images available
                                 @endif
                             </td>
                             <td>
@@ -171,40 +171,36 @@
                 <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="nama_produk" name="nama_produk" placeholder="Nama Produk" required/>
-                        <label for="nama_produk">Nama Produk</label>
+                        <input type="text" class="form-control" id="nama_produk" name="nama_produk" placeholder="Product Name" required/>
+                        <label for="nama_produk">Product Name</label>
                     </div>
                     <div class="form-floating form-floating-outline mb-4">
-
-                        <select class="selectpicker w-100" data-style="btn-default" name="id_kategori"
-                            data-live-search="true" required>
-                            <option selected disabled value="">Pilih Kategori</option>
+                        <select class="selectpicker w-100" data-style="btn-default" name="id_kategori" data-live-search="true" required>
+                            <option selected disabled value="">Select Category</option>
                             @foreach($kategoris as $kategori)
                             <option value="{{ $kategori->id }}">{{ $kategori->kategori }}</option>
                             @endforeach
                         </select>
-                        <label>Kategori</label>
+                        <label>Category</label>
                     </div>
                     <div class="form-floating form-floating-outline mb-4">
-                        <input type="number" class="form-control" id="stok" name="stok" placeholder="Stok" required/>
-                        <label for="stok">Stok</label>
+                        <input type="number" class="form-control" id="stok" name="stok" placeholder="Stock" required/>
+                        <label for="stok">Stock</label>
                     </div>
                     <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="harga" name="harga"
-                               placeholder="Harga Jual" pattern="^\d+(\.\d{1,2})?$" required/>
-                        <label for="harga">Harga Jual ( Ditampilkan hijau ) </label>
+                        <input type="text" class="form-control" id="harga" name="harga" placeholder="Selling Price" pattern="^\d+(\.\d{1,2})?$" required/>
+                        <label for="harga">Selling Price (Displayed in green)</label>
                     </div>
                     <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="harga_diskon" name="harga_diskon"
-                               placeholder="Harga Asli" pattern="^\d+(\.\d{1,2})?$"/>
-                        <label for="harga_diskon">Harga Awal ( Dicoret ) (opsional)</label>
+                        <input type="text" class="form-control" id="harga_diskon" name="harga_diskon" placeholder="Original Price" pattern="^\d+(\.\d{1,2})?$"/>
+                        <label for="harga_diskon">Original Price (Strikethrough) (Optional)</label>
                     </div>
                     <div class="mb-4">
-                        <label for="foto">Foto Produk</label>
+                        <label for="foto">Product Image</label>
                         <input type="file" class="form-control" id="foto" name="foto" />
                     </div>
                     <div class="mb-4">
-                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <label for="deskripsi" class="form-label">Description</label>
                         <div id="snow-toolbar">
                             <span class="ql-formats">
                                 <select class="ql-font"></select>

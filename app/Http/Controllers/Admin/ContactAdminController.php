@@ -51,6 +51,6 @@ class ContactAdminController extends Controller
         ]);
 
         // Redirect kembali ke daftar kontak dengan pesan sukses
-        return redirect()->route('contact-admin.index')->with('msg', 'Kontak berhasil diperbarui!');
+        return redirect()->route('contact-admin.index')->with('msg', 'Contact has been successfully updated!');
     }
 }

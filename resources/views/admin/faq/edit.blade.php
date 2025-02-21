@@ -23,12 +23,12 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating form-floating-outline mb-4">
-                        <textarea type="text" class="form-control" id="basic-default-fullname" name="pertanyaan" placeholder="Pertanyaan" required>{{ $faq->pertanyaan }}</textarea>
-                        <label for="basic-default-fullname">Pertanyaan</label>
+                        <textarea type="text" class="form-control" id="basic-default-fullname" name="pertanyaan" placeholder="Question" required>{{ $faq->pertanyaan }}</textarea>
+                        <label for="basic-default-fullname">Question</label>
                     </div>
                     <div class="form-floating form-floating-outline mb-4">
-                        <textarea type="text" class="form-control" id="basic-default-fullname" name="jawaban" placeholder="Jawaban" required>{{ $faq->jawaban }}</textarea>
-                        <label for="basic-default-fullname">Jawaban</label>
+                        <textarea type="text" class="form-control" id="basic-default-fullname" name="jawaban" placeholder="Answer" required>{{ $faq->jawaban }}</textarea>
+                        <label for="basic-default-fullname">Answer</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Update</button>
                     <a href="{{ route('faq.index') }}" class="btn btn-danger">Cancel</a>

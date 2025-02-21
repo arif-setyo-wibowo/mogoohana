@@ -46,7 +46,7 @@ class FaqController extends Controller
 
         $faq->save();
 
-        return redirect()->route('faq.index')->with('msg', 'FAQ berhasil ditambahkan');
+        return redirect()->route('faq.index')->with('msg', 'FAQ has been successfully added.');
 
     }
 
@@ -90,7 +90,7 @@ class FaqController extends Controller
 
         $faq->save();
 
-        return redirect()->route('faq.index')->with('msg', 'FAQ berhasil diperbarui');
+        return redirect()->route('faq.index')->with('msg', 'FAQ has been successfully updated.');
 
     }
 
@@ -102,6 +102,6 @@ class FaqController extends Controller
         $faq = Faq::findOrFail($id);
         $faq->delete();
 
-        return redirect()->route('faq.index')->with('msg', 'FAQ berhasil dihapus');
+        return redirect()->route('faq.index')->with('msg', 'FAQ has been successfully deleted.');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span> Kategori</h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span> Category</h4>
 
     <div class="card mb-4">
         <div class="card-header p-0">
@@ -61,7 +61,7 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button type="button" class="nav-link waves-effect active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-home" aria-controls="navs-top-home" aria-selected="false" tabindex="-1">
-                     Kategori
+                     Category
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
@@ -79,7 +79,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Kategori</th>
+                            <th>Category</th>
                             <th>Banner</th>
                             <th>Action</th>
                         </tr>
@@ -98,7 +98,7 @@
                                     alt="Kategori Image"
                                     width="125">
                                 @else
-                                Tidak ada gambar
+                                There is no image
                                 @endif
                             </td>
                             <td>
@@ -122,7 +122,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Gambar Kategori: {{ $item->kategori }}</h4>
+                                        <h4 class="modal-title">Category Image: {{ $item->kategori }}</h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -149,13 +149,13 @@
                 <form action="{{ route('kategori.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="basic-default-fullname" name="kategori" placeholder="Kategori" required/>
-                        <label for="basic-default-fullname">Kategori</label>
+                        <input type="text" class="form-control" id="basic-default-fullname" name="kategori" placeholder="Category" required/>
+                        <label for="basic-default-fullname">Category</label>
                     </div>
 
                     <div class="mb-4">
-                        <label for="basic-default-fullname">Banner kategori</label>
-                        <input type="file" class="form-control" id="basic-default-fullname" name="foto" placeholder="Banner Kategori" />
+                        <label for="basic-default-fullname">Banner Category</label>
+                        <input type="file" class="form-control" id="basic-default-fullname" name="foto" placeholder="Banner Category" />
                     </div>
                     <button type="submit" class="btn btn-primary">Store</button>
                 </form>

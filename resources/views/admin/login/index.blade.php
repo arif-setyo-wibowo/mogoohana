@@ -67,8 +67,8 @@
             <!-- Login -->
             <div class="card p-2">
                 <div class="card-body mt-2">
-                    <h4 class="mb-2">Selamat Datang! 👋</h4>
-                    <p class="mb-4">Login dengan user anda untuk masuk ke sistem</p>
+                    <h4 class="mb-2">Welcome! 👋</h4>
+                    <p class="mb-4">Log in with your user account to access the system</p>
 
                     <?php if (session()->has('msg')):?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert" id="autoDismissAlert" style="margin:5px;">

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span> Kategori</h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span> Category</h4>
 
     <div class="card mb-4">
         <div class="card-header p-0">
@@ -23,18 +23,18 @@
                     @csrf
                     @method('PUT')
                     <div class="form-floating form-floating-outline mb-4">
-                        <input type="text" class="form-control" id="basic-default-fullname" name="kategori" placeholder="Kategori" value="{{ $kategori->kategori }}" required/>
-                        <label for="basic-default-fullname">Kategori</label>
+                        <input type="text" class="form-control" id="basic-default-fullname" name="kategori" placeholder="Category" value="{{ $kategori->kategori }}" required/>
+                        <label for="basic-default-fullname">Category</label>
                     </div>
 
                     <div class="mb-4">
-                        <label for="basic-default-fullname">Banner kategori</label>
-                        <input type="file" class="form-control" id="basic-default-fullname" name="foto" placeholder="Banner Kategori" />
+                        <label for="basic-default-fullname">Banner Category</label>
+                        <input type="file" class="form-control" id="basic-default-fullname" name="foto" placeholder="Banner Category" />
 
                         @if($kategori->foto)
                         <div class="mt-3">
-                            <label>Foto Saat Ini:</label>
-                            <img src="{{ asset('storage/' . $kategori->foto) }}" alt="Kategori Image" width="200" class="img-thumbnail">
+                            <label>Current Photo:</label>
+                            <img src="{{ asset('storage/' . $kategori->foto) }}" alt="Category Image" width="200" class="img-thumbnail">
                         </div>
                         @endif
                     </div>

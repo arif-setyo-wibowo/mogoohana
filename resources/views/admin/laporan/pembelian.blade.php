@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span>Laporan Pembelian</h4>
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">MogoOhana/</span>Purchase Report</h4>
 
     <div class="card mb-4">
         <div class="card-header p-0">
@@ -10,7 +10,7 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button type="button" class="nav-link waves-effect active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-home" aria-controls="navs-top-home" aria-selected="false" tabindex="-1">
-                            Laporan Pembelian
+                            Purchase Report
                         </button>
                     </li>
                     <span class="tab-slider" style="left: 91.1528px; width: 107.111px; bottom: 0px;"></span>
@@ -23,13 +23,13 @@
                     <div class="col-md-4 mb-4">
                         <div class="form-floating form-floating-outline">
                             <input type="date" class="form-control" id="tanggal_awal" name="tanggal_awal" placeholder="Tanggal Awal" value="{{ request('tanggal_awal') }}" required/>
-                            <label for="tanggal_awal">Tanggal Awal</label>
+                            <label for="tanggal_awal">Start date</label>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4">
                         <div class="form-floating form-floating-outline">
                             <input type="date" class="form-control" id="tanggal_akhir" name="tanggal_akhir" placeholder="Tanggal Akhir" value="{{ request('tanggal_akhir') }}" required/>
-                            <label for="tanggal_akhir">Tanggal Akhir</label>
+                            <label for="tanggal_akhir">End date</label>
                         </div>
                     </div>
                     <div class="col-md-4 mb-4 d-flex align-items-end">
@@ -53,11 +53,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nomer Order</th>
+                                <th>Order Number</th>
                                 <th>Email</th>
-                                <th>Tanggal Order</th>
-                                <th>Total Harga</th>
-                                <th>Bukti Transfer</th>
+                                <th>Order Date</th>
+                                <th>Total Price</th>
+                                <th>Payment Proof</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -101,13 +101,13 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Bukti Pembayaran - Order #{{ $pembelian->nomer_order }}</h4>
+                    <h4 class="modal-title">Proof of Payment - Order #{{ $pembelian->nomer_order }}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col mb-4 mt-2">
-                            <img src="{{ asset('storage/' . $pembelian->bukti_transfer) }}" alt="Bukti Pembayaran"
+                            <img src="{{ asset('storage/' . $pembelian->bukti_transfer) }}" alt="Proof of Payment"
                                 width="100%">
                         </div>
                     </div>
@@ -124,31 +124,28 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Detail Produk Dibeli - Order #{{ $pembelian->nomer_order }}</h4>
+                    <h4 class="modal-title">Purchased Product Details - Order #{{ $pembelian->nomer_order }}</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <h5>Informasi Order</h5>
-                            <p><strong>Nomor Order:</strong> {{ $pembelian->nomer_order }}</p>
-                            <p><strong>Tanggal Order:</strong>
-                                {{ \Carbon\Carbon::parse($pembelian->tanggal_order)->format('d F Y') }}</p>
+                            <h5>Order Information</h5>
+                            <p><strong>Order Number:</strong> {{ $pembelian->nomer_order }}</p>
+                            <p><strong>Order Date:</strong> {{ \Carbon\Carbon::parse($pembelian->tanggal_order)->format('d F Y') }}</p>
                             <p><strong>Email:</strong> {{ $pembelian->email }}</p>
                         </div>
                         <div class="col-md-6">
-                            <h5>Ringkasan Pembayaran</h5>
-                            <p><strong>Total Harga:</strong> $ {{ number_format($pembelian->total_harga, 0, ',', '.') }}
-                            </p>
-                            <p><strong>Status:</strong> {{ $pembelian->status == 'pending' ? 'Pending' : 'Complete' }}
-                            </p>
-                            <p><strong>Methode Pembayaran: </strong> {{ $pembelian->metode_pembayaran }}</p>
+                            <h5>Payment Summary</h5>
+                            <p><strong>Total Price:</strong> $ {{ number_format($pembelian->total_harga, 0, ',', '.') }}</p>
+                            <p><strong>Status:</strong> {{ $pembelian->status == 'pending' ? 'Pending' : 'Complete' }}</p>
+                            <p><strong>Payment Method:</strong> {{ $pembelian->metode_pembayaran }}</p>
                         </div>
                         <div class="col-md-6">
-                            <h5>Ringkasan Akun</h5>
+                            <h5>Account Summary</h5>
                             <p><strong>Username:</strong> {{ $pembelian->username }}</p>
                             <p><strong>Facebook:</strong> {{ $pembelian->facebook }}</p>
-                            <p><strong>Link:</strong><a href="{{ $pembelian->link }}">{{ $pembelian->link }}</a></p>
+                            <p><strong>Link:</strong> <a href="{{ $pembelian->link }}">{{ $pembelian->link }}</a></p>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -156,10 +153,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Produk</th>
-                                    <th>Jumlah</th>
-                                    <th>Harga Satuan</th>
-                                    <th>Total Harga</th>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Price</th>
+                                    <th>Total Price</th>
                                 </tr>
                             </thead>
                             <tbody>

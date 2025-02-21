@@ -82,7 +82,7 @@ class ProdukController extends Controller
 
         $produk->save();
 
-        return redirect()->route('produk.index')->with('msg', 'Produk berhasil ditambahkan');
+        return redirect()->route('produk.index')->with('msg', 'Product has been successfully added.');
     }
 
     /**
@@ -155,7 +155,7 @@ class ProdukController extends Controller
 
         $produk->save();
 
-        return redirect()->route('produk.index')->with('msg', 'Produk berhasil diperbarui');
+        return redirect()->route('produk.index')->with('msg', 'Product has been successfully update.');
     }
 
     /**
@@ -172,6 +172,6 @@ class ProdukController extends Controller
 
         $produk->delete();
 
-        return redirect()->route('produk.index')->with('msg', 'Produk berhasil dihapus');
+        return redirect()->route('produk.index')->with('msg', 'Product has been successfully deleted.');
     }
 }

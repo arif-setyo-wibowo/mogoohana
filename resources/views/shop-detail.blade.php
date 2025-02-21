@@ -61,7 +61,7 @@
                     </ul>
                 	<div class="tab-content shop_info_tab">
                       	<div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
-                             {!! html_entity_decode($product->deskripsi) ?? 'Tidak ada deskripsi detail produk.' !!}
+                             {!! html_entity_decode($product->deskripsi) ?? 'There is no detailed product description.' !!}
                       	</div>
                 	</div>
                 </div>

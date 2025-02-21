@@ -99,7 +99,7 @@
                                     alt="Blog Image"
                                     width="125">
                                 @else
-                                Tidak ada gambar
+                                Image not found
                                 @endif
                             </td>
                             <td>{{ $item->deskripsi }}</td>

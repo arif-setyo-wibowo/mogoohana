@@ -98,20 +98,20 @@
                    <li class="menu-item  {{ request()->routeIs('kategori.index') ? 'active' : '' }}">
                       <a href="{{ route('kategori.index')}}" class="menu-link">
                           <i class="menu-icon tf-icons mdi mdi-shape"></i>
-                          <div>Data Kategori</div>
+                          <div>Data Category</div>
                       </a>
                   </li>
                   <li class="menu-item {{ request()->routeIs('produk.index') ? 'active' : '' }}">
                       <a href="{{ route('produk.index')}}" class="menu-link">
                           <i class="menu-icon tf-icons mdi mdi-clipboard-outline"></i>
-                          <div>Data Produk</div>
+                          <div>Data Product</div>
                       </a>
                   </li>
 
                   <li class="menu-item {{ request()->routeIs('pembelian.index') ? 'active' : '' }}">
                       <a href="{{ route('pembelian.index')}}" class="menu-link">
                           <i class="menu-icon tf-icons mdi mdi-calendar-edit"></i>
-                          <div>Data Pembelian</div>
+                          <div>Data Purchase</div>
                       </a>
                   </li>
 
@@ -130,16 +130,16 @@
                   <li class="menu-item {{ request()->routeIs('kupon.index') ? 'active' : '' }}">
                     <a href="{{ route('kupon.index')}}" class="menu-link">
                         <i class="menu-icon tf-icons mdi mdi-sale"></i>
-                        <div>Data Kupon</div>
+                        <div>Data Coupon</div>
                     </a>
                 </li>
                   <li class="menu-header fw-medium mt-4">
-                      <span class="menu-header-text">Data Laporan</span>
+                      <span class="menu-header-text">Report Data</span>
                   </li>
                   <li class="menu-item {{ request()->routeIs('laporan.pembelian') ? 'active' : '' }}">
                       <a href="{{ route('laporan.pembelian')}}" class="menu-link">
                           <i class="menu-icon tf-icons mdi mdi-calendar-edit"></i>
-                          <div>Laporan Pembelian</div>
+                          <div>Report Puchase</div>
                       </a>
                   </li>
                   <li class="menu-header fw-medium mt-4">
