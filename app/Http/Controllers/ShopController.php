@@ -52,22 +52,19 @@ class ShopController extends Controller
             });
         }
 
-        $sortBy = $request->input('sort', 'latest');
-        switch ($sortBy) {
+        switch ($request->sort) {
+            case 'newest':
+                $query->orderBy('created_at', 'desc');
+                break;
             case 'price_asc':
                 $query->orderBy('harga', 'asc');
                 break;
             case 'price_desc':
                 $query->orderBy('harga', 'desc');
                 break;
-            case 'name_asc':
-                $query->orderBy('nama_produk', 'asc');
-                break;
-            case 'name_desc':
-                $query->orderBy('nama_produk', 'desc');
-                break;
             default:
-                $query->latest();
+                $query->orderBy('id', 'desc'); // Default sorting
+                break;
         }
 
         $products = $query->paginate($perPage);

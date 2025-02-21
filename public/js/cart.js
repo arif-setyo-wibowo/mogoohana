@@ -475,28 +475,27 @@ class CartManager {
     }
 
     init() {
-        const self = this; // Capture the correct context
-
-        // Add to cart links and buttons
-        const addToCartLinks = document.querySelectorAll('.add-to-cart-link');
-        addToCartLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
+        this.setupQuantityControls();
+        this.setupClearCart();
+        
+        // Use event delegation for add to cart links
+        document.addEventListener('click', (e) => {
+            const addToCartLink = e.target.matches('.add-to-cart-link') ? e.target : e.target.closest('.add-to-cart-link');
+            if (addToCartLink) {
                 e.preventDefault();
+                e.stopPropagation();
                 
                 try {
                     // Get product ID and quantity from data attributes
-                    const produk_id = this.getAttribute('data-produk_id');
-                    const quantityEl = this.closest('.detail-extralink')?.querySelector('.qty-val');
-                    const quantity = this.getAttribute('data-quantity') || 
-                                     (quantityEl ? quantityEl.value : 1);
+                    const produk_id = addToCartLink.dataset.produk_id;
+                    const quantity = addToCartLink.dataset.quantity || 1;
 
-                    // Validate inputs
                     if (!produk_id) {
                         throw new Error('Product ID not found');
                     }
 
                     // Add to cart using the class method
-                    self.addToCart(produk_id, quantity);
+                    this.addToCart(produk_id, parseInt(quantity));
                 } catch (error) {
                     console.error('Error in add to cart handler:', error);
                     
@@ -504,20 +503,10 @@ class CartManager {
                         icon: 'error',
                         title: 'Error',
                         text: error.message || 'Unable to add product to cart',
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
                     });
                 }
-            });
+            }
         });
-
-        // Setup quantity controls and cart management
-        this.setupQuantityControls();
-        this.setupClearCart();
-        this.updateCartTotal();
-        this.updateCartDropdown();
     }
 }
 
