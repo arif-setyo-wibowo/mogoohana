@@ -44,6 +44,7 @@ Route::fallback(function () {
 Route::controller(ShopCartController::class)->group(function () {
     Route::get('/shop-cart', 'index')->name('shop-cart.index');
     Route::post('/cart/store', 'store')->name('cart.store');
+    Route::get('/cart/get-cart-data', 'getCartData')->name('cart.get-data');
     Route::put('/shop-cart/{cartId}', 'update')->name('shop-cart.update');
     Route::delete('/shop-cart/{cartId}', 'destroy')->name('shop-cart.remove');
     Route::post('/shop-cart/clear', 'clear')->name('shop-cart.clear');

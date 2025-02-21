@@ -42,11 +42,7 @@ class ShopCheckoutController extends Controller
                 'username' => 'required|string|max:255',
                 'facebook' => 'required|string|max:255',
                 'link' => 'required|string',
-                'payment_method' => 'required|in:PayPal,CashApp,Venmo,Usdt',
-                'bukti_pembayaran_paypal' => $request->input('payment_method') === 'PayPal' ? 'required|file|image|max:5120' : '',
-                'bukti_pembayaran_venmo' => $request->input('payment_method') === 'Venmo' ? 'required|file|image|max:5120' : '',
-                'bukti_pembayaran_cashapp' => $request->input('payment_method') === 'CashApp' ? 'required|file|image|max:5120' : '',
-                'bukti_pembayaran_usdt' => $request->input('payment_method') === 'Usdt' ? 'required|file|image|max:5120' : '',
+                'payment_option' => 'required|in:PayPal,CashApp,Usdt',
                 'coupon_code' => 'nullable|string|max:50'
             ], [
                 'name.required' => 'Full name is required',
@@ -55,41 +51,13 @@ class ShopCheckoutController extends Controller
                 'username.required' => 'Username is required',
                 'facebook.required' => 'Facebook is required',
                 'link.required' => 'Link is required',
-                'payment_method.required' => 'Please select a payment method',
-                'bukti_pembayaran_paypal.required' => 'Please upload PayPal payment proof',
-                'bukti_pembayaran_venmo.required' => 'Please upload Venmo payment proof',
-                'bukti_pembayaran_cashapp.required' => 'Please upload CashApp payment proof',
-                'bukti_pembayaran_usdt.required' => 'Please upload Usdt payment proof',
-                'bukti_pembayaran_paypal.image' => 'PayPal payment proof must be an image',
-                'bukti_pembayaran_venmo.image' => 'Venmo payment proof must be an image',
-                'bukti_pembayaran_cashapp.image' => 'CashApp payment proof must be an image',
-                'bukti_pembayaran_usdt.image' => 'Usdt payment proof must be an image',
-                'bukti_pembayaran_paypal.max' => 'PayPal payment proof must not exceed 5MB',
-                'bukti_pembayaran_venmo.max' => 'Venmo payment proof must not exceed 5MB',
-                'bukti_pembayaran_cashapp.max' => 'CashApp payment proof must not exceed 5MB',
-                'bukti_pembayaran_usdt.max' => 'Usdt payment proof must not exceed 5MB'
+                'payment_option.required' => 'Please select a payment method',
             ]);
 
             $buktiPath = null;
-            $paymentMethod = $request->input('payment_method');
+            $paymentMethod = $request->input('payment_option');
 
-            switch ($paymentMethod) {
-                case 'PayPal':
-                    $file = $request->file('bukti_pembayaran_paypal');
-                    break;
-                case 'Venmo':
-                    $file = $request->file('bukti_pembayaran_venmo');
-                    break;
-                case 'CashApp':
-                    $file = $request->file('bukti_pembayaran_cashapp');
-                    break;
-                case 'Usdt':
-                    $file = $request->file('bukti_pembayaran_usdt');
-                    break;
-                default:
-                    throw new \Exception('Invalid payment method');
-            }
-
+            $file = $request->file('bukti_pembayaran');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $buktiPath = $file->storeAs('payment_proofs', $fileName, 'public');
 
@@ -151,20 +119,18 @@ class ShopCheckoutController extends Controller
             $pembelianData = [
                 'nomer_order' => $nomerOrder,
                 'tanggal_order' => now(),
-                'total_harga' => number_format($finalPrice, 2, '.', '.'),
-                'harga_asli' => number_format($totalPrice, 2, '.', '.'),
-                'diskon' => number_format($discountAmount, 2, '.', '.'),
-                'kode_kupon' => $couponApplied ? $couponApplied->kode : null,
+                'total_harga' => floatval(str_replace(',', '', $finalPrice)),
+                'harga_asli' => floatval(str_replace(',', '', $totalPrice)),
+                'diskon' => floatval(str_replace(',', '', $discountAmount)),
+                'kode_kupon' => $request->input('coupon_code'),
                 'metode_pembayaran' => $paymentMethod,
                 'status' => 'pending',
-
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'note' => $request->input('note'),
-
-                'username' => $request->input('username', ''),
-                'facebook' => $request->input('facebook', ''),
-                'link' => $request->input('link', '')
+                'username' => $validatedData['username'],
+                'facebook' => $validatedData['facebook'],
+                'link' => $validatedData['link']
             ];
 
             if (Auth::check()) {
@@ -190,18 +156,10 @@ class ShopCheckoutController extends Controller
             }
 
             try {
-                // Send email notification
                 Mail::to($validatedData['email'])->send(new OrderNotificationMail($pembelian));
-
-                // Optional: Send a copy to admin
                 Mail::to(config('mail.admin_email'))->send(new OrderNotificationMail($pembelian));
             } catch (\Exception $e) {
-                // Log the email sending error
                 Log::error('Order Email Notification Failed: ' . $e->getMessage());
-
-                // Optionally, you can choose to continue the process or throw the exception
-                // Uncomment the next line if you want to stop the process on email failure
-                // throw $e;
             }
 
             Cart::where('user_id', Auth::id())->delete();
@@ -228,9 +186,11 @@ class ShopCheckoutController extends Controller
 
             return redirect($whatsappUrl)->with('success', 'Your message has been sent successfully!');
         } catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->back()->withErrors($e->getMessage());
+            // return redirect()->back()->withErrors($e->getMessage());
+            echo print_r($e->getMessage());
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors($e->getMessage());
+            // return redirect()->back()->withErrors($e->getMessage());
+            echo print_r($e->getMessage());
         }
     }
 

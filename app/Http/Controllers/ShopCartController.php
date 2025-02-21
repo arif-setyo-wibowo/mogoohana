@@ -206,6 +206,28 @@ class ShopCartController extends Controller
         ]);
     }
 
+    public function getCartData()
+    {
+        $cartItems = Cart::with('produk')
+            ->when(Auth::check(), function($query) {
+                return $query->where('user_id', Auth::id());
+            })
+            ->when(!Auth::check(), function($query) {
+                return $query->where('session_id', Session::getId());
+            })
+            ->get();
+
+        $cartTotal = $cartItems->sum(function($item) {
+            return $item->produk->harga * $item->quantity;
+        });
+
+        return response()->json([
+            'cartItems' => $cartItems,
+            'cartTotal' => $cartTotal,
+            'cartItemCount' => $cartItems->sum('quantity')
+        ]);
+    }
+
     public function checkout()
     {
         $cartItems = Cart::getCartItems();

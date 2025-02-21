@@ -67,17 +67,6 @@
                             </tr>
                         @endforelse
                         </tbody>
-                        <tfoot>
-                        	<tr>
-                            	<td colspan="6" class="px-0">
-                                	<div class="row g-0 align-items-center">
-
-                                    	<div class="col-lg-4 col-md-6 mb-3 mb-md-0">
-                                    	</div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -102,14 +91,14 @@
                             <tbody>
                                 <tr>
                                     <td class="cart_total_label">Total</td>
-                                    <td class="cart_total_amount"><strong> ${{ number_format($cartItems->sum(function($item) { return $item->produk->harga * $item->quantity; }), 0) }}</strong></td>
+                                    <td class="cart_total_amount text-end"><strong> ${{ number_format($cartItems->sum(function($item) { return $item->produk->harga * $item->quantity; }), 0) }}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
 
                     @if($cartItems->count() > 0)
-                        <a href="{{ route('shop-checkout.index')}}" class="btn btn-fill-out">Proceed To CheckOut</a>
+                        <a href="{{ route('shop-checkout.index')}}" class="btn btn-fill-out btn-block">Proceed To CheckOut</a>
                     @endif
                 </div>
             </div>
@@ -118,8 +107,4 @@
 </div>
 <!-- END SECTION SHOP -->
 
-@endsection
-
-@section('scripts')
-<script src="{{ asset('js/cart.js') }}"></script>
 @endsection

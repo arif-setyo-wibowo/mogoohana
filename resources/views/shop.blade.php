@@ -74,7 +74,7 @@
                                 <div class="product_action_box">
                                     <ul class="list_none pr_action_btn">
                                         <li class="add-to-cart">
-                                            <a href="javascript:void(0);" class="add add-to-cart-link" 
+                                            <a href="javascript:void(0);" class="add-to-cart-link" 
                                                 data-produk_id="{{ $product->id }}" 
                                                 data-quantity="1">
                                                 <i class="icon-basket-loaded"></i> Add To Cart

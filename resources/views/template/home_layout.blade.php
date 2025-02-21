@@ -181,7 +181,6 @@
                             <span class="cart_count">{{ $cartItemCount }}</span>
                         </a>
                         <div class="cart_box dropdown-menu dropdown-menu-right cartku">
-
                             @php
                                 $cartItems = \App\Models\Cart::with('produk')
                                     ->when(Auth::check(), function($query) {
@@ -202,8 +201,6 @@
 
                                     @foreach($cartItems as $item)
                                     <li>
-                                        <a href="#" class="item_remove" data-cart-id="{{ $item->id }}"
-                                            onclick="event.preventDefault(); removeCartItemDropdown(this);"><i class="ion-close"></i></a>
                                         <a href="{{ route('shop-detail.index', $item->produk->id) }}"><img alt="{{ $item->produk->nama_produk }}"
                                             src="{{ asset('storage/' . $item->produk->foto) }}">{{ Str::limit($item->produk->nama_produk, 18) }}</a>
                                         <span class="cart_quantity"> {{ $item->quantity }} x <span class="cart_amount"> <span class="price_symbole">$</span></span>{{ number_format($item->produk->harga, 0) }}</span>
@@ -216,7 +213,7 @@
                                     <p class="cart_buttons"><a href="{{ route('shop-cart.index') }}" class="btn btn-fill-line btn-radius view-cart">View Cart</a><a href="{{ route('shop-checkout.index') }}" class="btn btn-fill-out btn-radius checkout">Checkout</a></p>
                                 </div>
                             @else
-                                <div class="text-center p-3">
+                                <div class="text-center">
                                     <p>Your cart is empty</p>
                                 </div>
                             @endif
@@ -337,7 +334,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p class="mb-md-0 text-center text-md-start">© 2025 All Rights Reserved by Itboy</p>
+                    <p class="mb-md-0 text-center text-md-start"> 2025 All Rights Reserved by Itboy</p>
                 </div>
             </div>
         </div>
@@ -379,6 +376,7 @@
 @yield('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 <script src="{{ asset('js/price-filter.js') }}"></script>
+<script src="{{ asset('js/cart.js') }}"></script>
 @yield('scripts')
 <script src="{{ asset('assets/')}}/js/scripts.js"></script>
 
