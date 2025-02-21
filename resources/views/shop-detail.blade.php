@@ -85,14 +85,14 @@
                     <div class="item">
                         <div class="product">
                             <div class="product_img">
-                                <a href="shop-product-detail.html">
+                                <a href="{{ route('shop-detail.index', ['slug' => $relatedProduct->slug]) }}">
                                     <img src="{{ asset('storage/' . $relatedProduct->foto) }}"
                                         style="width: 100%; height: 250px; object-fit: cover;"
                                         alt="{{ $relatedProduct->nama_produk }}">
                                 </a>
                             </div>
                             <div class="product_info">
-                                <h6 class="product_title"><a href="shop-product-detail.html">Blue Dress For Woman</a></h6>
+                                <h6 class="product_title"><a href="{{ route('shop-detail.index', ['slug' => $relatedProduct->slug]) }}">{{ $relatedProduct->nama_produk }}</a></h6>
                                 <div class="product_price">
                                     <span  class="price">$ {{ fmod($relatedProduct->harga, 1) == 0 ? number_format($relatedProduct->harga, 0, '.', '.') : number_format($relatedProduct->harga, 2, '.', '.') }}</span>
                                     @if($relatedProduct->harga_diskon > 0)

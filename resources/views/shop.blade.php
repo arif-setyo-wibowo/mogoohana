@@ -31,11 +31,15 @@
                         <div class="product_header">
                             <div class="product_header_left">
                                 <div class="custom_select">
-                                    <select class="form-control form-control-sm">
-                                        <option value="order">Default sorting</option>
-                                        <option value="date">Sort by newness</option>
-                                        <option value="price">Sort by price: low to high</option>
-                                        <option value="price-desc">Sort by price: high to low</option>
+                                    <select class="form-control form-control-sm" id="sort-select" onchange="window.location.href=this.value">
+                                        <option value="{{ route('shop.index', request()->except('sort')) }}" 
+                                            {{ !request('sort') ? 'selected' : '' }}>Default sorting</option>
+                                        <option value="{{ route('shop.index', array_merge(request()->except('sort'), ['sort' => 'newest'])) }}"
+                                            {{ request('sort') == 'newest' ? 'selected' : '' }}>Sort by newness</option>
+                                        <option value="{{ route('shop.index', array_merge(request()->except('sort'), ['sort' => 'price_asc'])) }}"
+                                            {{ request('sort') == 'price_asc' ? 'selected' : '' }}>Sort by price: low to high</option>
+                                        <option value="{{ route('shop.index', array_merge(request()->except('sort'), ['sort' => 'price_desc'])) }}"
+                                            {{ request('sort') == 'price_desc' ? 'selected' : '' }}>Sort by price: high to low</option>
                                     </select>
                                 </div>
                             </div>
@@ -69,8 +73,13 @@
                                 </a>
                                 <div class="product_action_box">
                                     <ul class="list_none pr_action_btn">
-                                        <li class="add-to-cart"><a href="javascript:void(0);"
-                                            data-produk_id="{{ $product->id }}" data-quantity="1"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                        <li class="add-to-cart">
+                                            <a href="javascript:void(0);" class="add add-to-cart-link" 
+                                                data-produk_id="{{ $product->id }}" 
+                                                data-quantity="1">
+                                                <i class="icon-basket-loaded"></i> Add To Cart
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -120,20 +129,36 @@
                                 )
                             ) }}" class="category-filter {{ request('category') == $category->slug ? 'active' : '' }}">
                             <span class="categories_name">
-                                {{ $category->kategori }}</span><span class="categories_num">({{ $category->produks_count }})</span></a></li>
+                                {{ Str::limit($category->kategori, 20) }}</span><span class="categories_num">({{ $category->produks_count }})</span></a></li>
                             @endforeach
                         </ul>
                     </div>
                     <div class="widget">
                     	<h5 class="widget_title">Filter</h5>
                         <div class="filter_price">
-                             <div id="price_filter" data-min="0" data-max="500" data-min-value="50" data-max-value="300" data-price-sign="$"></div>
-                             <div class="price_range">
-                                 <span>Price: <span id="flt_price"></span></span>
-                                 <input type="hidden" id="price_first">
-                                 <input type="hidden" id="price_second">
-                             </div>
-                         </div>
+                            <div id="price_filter" 
+                                data-min="0" 
+                                data-max="{{ $maxPrice }}" 
+                                data-min-value="{{ request('min_price', $minPrice) }}" 
+                                data-max-value="{{ request('max_price', $maxPrice) }}" 
+                                data-price-sign="$">
+                            </div>
+                            <div class="price_range">
+                                <div class="d-flex justify-content-between">
+                                    <span>From: <strong id="slider-range-value1" class="text-brand">
+                                        ${{ number_format(request('min_price', $minPrice), 0, ',', '.') }}
+                                    </strong></span>
+                                    <span>To: <strong id="slider-range-value2" class="text-brand">
+                                        ${{ number_format(request('max_price', $maxPrice), 0, ',', '.') }}
+                                    </strong></span>
+                                </div>
+                                <input type="hidden" id="price_first" value="{{ request('min_price', $minPrice) }}">
+                                <input type="hidden" id="price_second" value="{{ request('max_price', $maxPrice) }}">
+                                <a href="#" id="apply-price-filter" class="btn btn-sm btn-fill-out mt-2">
+                                    <i class="linearicons-funnel mr-5"></i> Filter
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

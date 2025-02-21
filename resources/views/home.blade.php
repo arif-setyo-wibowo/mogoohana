@@ -62,22 +62,7 @@
 			<div class="col-12">
             	<div class="heading_tab_header">
                     <div class="heading_s2">
-                        <h2>Category Products</h2>
-                    </div>
-                    <div class="tab-style2">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#tabmenubar" aria-expanded="false">
-                            <span class="ion-android-menu"></span>
-                        </button>
-                        <ul class="nav nav-tabs justify-content-center justify-content-md-end" id="tabmenubar" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="arrival-tab" data-bs-toggle="tab" href="#arrival" role="tab" aria-controls="arrival" aria-selected="true">All</a>
-                            </li>
-                            @foreach($categories as $category)
-                            <li class="nav-item">
-                                <a class="nav-link" id="{{ $category->slug }}-tab" data-bs-toggle="tab" data-bs-target="#{{ $category->slug }}" href="#arrival" role="tab" aria-controls="{{ $category->slug }}" aria-selected="true">{{ $category->kategori }}</a>
-                            </li>
-                            @endforeach
-                        </ul>
+                        <h2>Products</h2>
                     </div>
                 </div>
             </div>
@@ -85,55 +70,22 @@
         <div class="row">
         	<div class="col-12">
                 <div class="tab_slider">
-                    <div class="tab-pane fade show active" id="arrival" role="tabpanel" aria-labelledby="arrival-tab">
-                        <div class="product_slider carousel_slider owl-carousel owl-theme nav_style1" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
-                            <div class="row product-grid-4">
-                                @php
-                                    $categoryProducts = collect();
-
-                                    foreach($categories as $category) {
-                                        $categoryProducts = $categoryProducts->merge($products->where('id_kategori', $category->id)->take(5));
-                                    }
-                                @endphp
-
-                                @foreach($categoryProducts as $product)
-                                <div class="item">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <a href="{{ route('shop-detail.index', ['slug' => $product->slug]) }}">
-                                                <img src="{{ asset('storage/' . $product->foto) }}"
-                                                alt="{{ $product->nama_produk }}"
-                                                style="width: 100%; height: 250px; object-fit: cover; aspect-ratio: 1/1;">
-                                            </a>
-                                            <div class="product_action_box">
-                                                <ul class="list_none pr_action_btn">
-                                                    <li class="add-to-cart"><a class="add add-to-cart-link" href="javascript:void(0);"
-                                                        data-produk_id="{{ $product->id }}" data-quantity="1"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product_info">
-                                            <h6 class="product_title"><a href="shop-product-detail.html">Blue Dress For Woman</a></h6>
-                                            <div class="product_price">
-                                                <span class="price">$ {{ fmod($product->harga, 1) == 0 ? number_format($product->harga, 0, '.', '.') : number_format($product->harga, 2, '.', '.') }}</span>
-                                                @if($product->harga_diskon > 0)
-                                                    <del>$ {{ fmod($product->harga_diskon, 1) == 0 ? number_format($product->harga_diskon, 0, '.', '.') : number_format($product->harga_diskon, 2, '.', '.') }}</del>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
+                    <div class="tab-pane fade show active" id="category" role="tabpanel" aria-labelledby="arrival-tab">
+                        @foreach($categories as $category)
+                        <div class="heading_s2 mb-3">
+                            <h4>{{ $category->kategori }}</h4>
                         </div>
-                    </div>
-                @foreach($categories as $category)
-                	<div class="tab-pane fade"  id="{{ $category->slug }}" role="tabpanel"  aria-labelledby="{{ $category->slug }}-tab">
-                        <div class="product_slider carousel_slider owl-carousel owl-theme nav_style1" data-loop="true" data-dots="false" data-nav="true" data-margin="20" data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
+                        <div class="product_slider carousel_slider owl-carousel owl-theme nav_style1 mb-4" 
+                             data-loop="true" 
+                             data-dots="false" 
+                             data-nav="true" 
+                             data-margin="20" 
+                             data-responsive='{"0":{"items": "1"}, "481":{"items": "2"}, "768":{"items": "3"}, "1199":{"items": "4"}}'>
                             @php
-                            $categoryProducts = $products->where('id_kategori', $category->id);
+                                $categoryProducts = $products->where('id_kategori', $category->id)->take(5);
                             @endphp
-                            @forelse($categoryProducts as $product)
+
+                            @foreach($categoryProducts as $product)
                             <div class="item">
                                 <div class="product">
                                     <div class="product_img">
@@ -144,13 +96,18 @@
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
-                                                <li class="add-to-cart"><a class="add add-to-cart-link" href="javascript:void(0);"
-                                                    data-produk_id="{{ $product->id }}" data-quantity="1"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li class="add-to-cart">
+                                                    <a href="javascript:void(0);" class="add add-to-cart-link" 
+                                                        data-produk_id="{{ $product->id }}" 
+                                                        data-quantity="1">
+                                                        <i class="icon-basket-loaded"></i> Add To Cart
+                                                    </a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product_info">
-                                        <h6 class="product_title"><a href="shop-product-detail.html"> {{ $product->nama_produk }}</a></h6>
+                                        <h6 class="product_title"><a href="{{ route('shop-detail.index', ['slug' => $product->slug]) }}">{{ $product->nama_produk }}</a></h6>
                                         <div class="product_price">
                                             <span class="price">$ {{ fmod($product->harga, 1) == 0 ? number_format($product->harga, 0, '.', '.') : number_format($product->harga, 2, '.', '.') }}</span>
                                             @if($product->harga_diskon > 0)
@@ -160,14 +117,10 @@
                                     </div>
                                 </div>
                             </div>
-                            @empty
-                            <div class="col-12 text-center">
-                                <p>No products in this category.</p>
-                            </div>
-                            @endforelse
+                            @endforeach
                         </div>
+                        @endforeach
                     </div>
-                @endforeach
                 </div>
             </div>
         </div>
