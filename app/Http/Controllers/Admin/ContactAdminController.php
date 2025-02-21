@@ -35,7 +35,6 @@ class ContactAdminController extends Controller
     {
         // Validasi input
         $request->validate([
-            'link_discord' => 'required|url',
             'link_wa' => 'required|url',
             'link_instagram' => 'required|url',
             'link_facebook' => 'required|url',
@@ -44,7 +43,6 @@ class ContactAdminController extends Controller
         // Cari data kontak berdasarkan ID
         $contact = Contact::findOrFail($id);
         $contact->update([
-            'link_discord' => $request->link_discord,
             'link_wa' => $request->link_wa,
             'link_instagram' => $request->link_instagram,
             'link_facebook' => $request->link_facebook,

@@ -24,9 +24,8 @@
             <p><strong>Order Date:</strong> {{ $order->tanggal_order->format('d F Y H:i:s') }}</p>
 
             <h3>Customer Information</h3>
-            <p><strong>Name:</strong> {{ $order->first_name }} {{ $order->last_name }}</p>
+            <p><strong>Name:</strong> {{ $order->name }}</p>
             <p><strong>Email:</strong> {{ $order->email }}</p>
-            <p><strong>Phone:</strong> {{ $order->phone }}</p>
 
             <h3>Game Account Details</h3>
             <p><strong>Username:</strong> {{ $order->username }}</p>

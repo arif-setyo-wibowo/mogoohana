@@ -37,14 +37,19 @@
 
 <!-- START SECTION BANNER -->
 <div class="section pb_20 small_pt">
-	<div class="container">
-    	<div class="row">
-
+    <div class="container">
+        <div class="heading_s1">
+            <h2 class="mb-4">Our Categories</h2>
+        </div>
+        <div class="row">
             @foreach($categories as $category)
-        	<div class="col-md-3">
-            	<div class="sale-banner mb-3 mb-md-4">
-                	<a class="hover_effect1" href="{{ route('shop.index', ['category' => $category->slug]) }}">
-                		<img src="{{ asset('storage/' . $category->foto) }}" alt="{{ $category->kategori }}">
+            <div class="col-md-3 col-6">
+                <div class="sale-banner mb-3 mb-md-4">
+                    <a class="hover_effect1" href="{{ route('shop.index', ['category' => $category->slug]) }}">
+                        <img src="{{ asset('storage/' . $category->foto) }}" alt="{{ $category->kategori }}">
+                        <div class="banner_text text-center mt-2">
+                            <h6>{{ $category->kategori }}</h6>
+                        </div>
                     </a>
                 </div>
             </div>

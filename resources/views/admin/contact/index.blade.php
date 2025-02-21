@@ -28,7 +28,6 @@
                     @foreach ($contacts as $key => $contact)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $contact->link_discord }}</td>
                             <td>{{ $contact->link_wa }}</td>
                             <td>{{ $contact->link_instagram }}</td>
                             <td>{{ $contact->link_facebook }}</td>

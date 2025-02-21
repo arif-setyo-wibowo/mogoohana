@@ -12,13 +12,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogQuery = Blog::query();
-
-        $blogs = $blogQuery->paginate(10);
-
-        return view('blog', compact(
-            'blogs'
-        ));
+        $blogs = Blog::latest()->paginate(10); 
+        return view('blog', compact('blogs'));
     }
 
     /**

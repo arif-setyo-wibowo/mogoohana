@@ -112,14 +112,24 @@
                 <div class="col-md-6">
                 	<div class="d-flex align-items-center justify-content-center justify-content-md-start">
                         <ul class="contact_detail text-center text-lg-start">
-                            <li><i class="ti-mobile"></i><span>123-456-7890</span></li>
+                            <li></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-md-6">
                 	<div class="text-center text-md-end">
                        	<ul class="header_list">
-                        	<li><a href="{{ route('login.index')}}"><i class="ti-user"></i><span>Login</span></a></li>
+                            @auth
+                            <li><a href="{{ route('my-account.index')}}"><i class="ti-user"></i><span>{{ Auth::user()->display_name ?? 'Account' }}</span></a></li>
+                            <li>
+                                <form action="{{ route('logout.index') }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <a href="javascript:void(0)" onclick="this.closest('form').submit()"><i class="ti-power-off"></i><span>Logout</span></a>
+                                </form>
+                            </li>
+                            @else
+                            <li><a href="{{ route('login.index')}}"><i class="ti-user"></i><span>Login</span></a></li>
+                            @endauth
 						</ul>
                     </div>
                 </div>

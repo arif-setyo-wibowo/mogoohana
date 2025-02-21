@@ -42,6 +42,9 @@ class BlogAdminController extends Controller
     public function store(Request $request)
     {
         try {
+            // Debug: Log all request data
+            Log::info('Blog store request data:', $request->all());
+            
             $validatedData = $request->validate([
                 'judul' => 'required|max:255',
                 'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -71,13 +74,10 @@ class BlogAdminController extends Controller
 
             return redirect()->route('blog.index')->with('msg', 'Blog successfully added');
         } catch (\Exception $e) {
-            // Log the full error
-            Log::error('blog store error: ' . $e->getMessage());
-            Log::error($e->getTraceAsString());
 
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Gagal menyimpan blog: ' . $e->getMessage());
+                ->with('error', 'Failed to save blog: ' . $e->getMessage());
         }
     }
 
@@ -86,7 +86,7 @@ class BlogAdminController extends Controller
      */
     public function show(string $id)
     {
-        $blog = blog::findOrFail($id);
+        $blog = Blog::findOrFail($id);
         $data = [
             'title' => 'Detail Blog',
             'Blog' => $blog
@@ -101,7 +101,7 @@ class BlogAdminController extends Controller
     {
         $blog = Blog::findOrFail($id);
         $data = [
-            'title' => 'Edit blog',
+            'title' => 'Blog Edit',
             'blog' => $blog
         ];
         return view('admin.blog.edit', $data);
@@ -113,7 +113,7 @@ class BlogAdminController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $blog = blog::findOrFail($id);
+            $blog = Blog::findOrFail($id);
 
             $validatedData = $request->validate([
                 'judul' => 'required|max:255',

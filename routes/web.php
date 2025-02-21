@@ -67,7 +67,7 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('/login', 'login')->name('login.submit');
     Route::get('/register', 'register')->name('register.index');
     Route::post('/register', 'registerStore')->name('register.store');
-    Route::post('/logout', 'logout')->name('logout');
+    Route::post('/logout', 'logout')->name('logout.index');
 });
 
 Route::get('/forgot-password', [AccountController::class, 'showForgotPasswordForm'])

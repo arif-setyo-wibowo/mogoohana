@@ -82,7 +82,6 @@
                             </div>
                         </form>
                         <div class="form-note text-center">Already have an account? <a href="{{ route('login.index')}}">Log in</a></div>
-                        <p class="font-xs text-muted text-center"><strong>Note:</strong> Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy.</p>
                     </div>
                 </div>
             </div>

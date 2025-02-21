@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="basic-default-fullname">Banner</label>
+                        <label for="basic-default-fullname">Image</label>
                         <input type="file" class="form-control" id="basic-default-fullname" name="foto" placeholder="Banner" />
 
                         @if($blog->foto)
@@ -40,7 +40,7 @@
                         @endif
                     </div>
                     <div class="mb-4">
-                        <label for="deskripsi" class="form-label">Description</label>
+                        <label for="deskripsi" class="form-label">Content</label>
                         <div id="snow-toolbar">
                             <span class="ql-formats">
                                 <select class="ql-font"></select>
