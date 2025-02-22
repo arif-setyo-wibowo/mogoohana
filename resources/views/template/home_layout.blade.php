@@ -52,7 +52,6 @@
     .video-container {
         position: relative;
         width: 100%;
-        height: 100vh;
         overflow: hidden;
     }
 
@@ -93,6 +92,19 @@
     .text-overlay a {
         text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
     }
+    /* Mode mobile: Zoom out video agar tidak terpotong */
+    @media (max-width: 768px) {
+        .video-container {
+            height: 65vh;
+        }
+
+        .video-background {
+            height: 100%;
+            width: 100%;
+            object-fit: cover; /* Pastikan video tetap memenuhi layar */
+        }
+    }
+
     </style>
 <body>
 
