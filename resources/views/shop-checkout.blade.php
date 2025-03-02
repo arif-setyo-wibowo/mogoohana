@@ -168,7 +168,7 @@
                                     <input class="form-check-input" type="radio" name="payment_option"
                                         id="exampleRadios4" value="CashApp">
                                     <label class="form-check-label" for="exampleRadios4">CashApp</label>
-                                    <p data-method="CashApp" class="payment-text">Send payment to: <span class="text-success">mogogs</span> <br> <a href="https://cash.app/app/QGC8QQM" target="_blank"
+                                    <p data-method="CashApp" class="payment-text">Send payment to: <span class="text-success">$mogoohana</span> <br> <a href="https://cash.app/app/QGC8QQM" target="_blank"
                                     class="btn btn-outline-primary btn-sm">CashApp Link</a></p>
                                 </div>
                                 <div class="custome-radio">
