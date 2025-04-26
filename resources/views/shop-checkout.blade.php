@@ -162,7 +162,7 @@
                                         id="exampleRadios3" value="PayPal" checked="">
                                     <label class="form-check-label" for="exampleRadios3">Paypal</label>
                                     <p data-method="PayPal" class="payment-text">Send payment to: <span
-                                    class="text-success">josephex13@gmail.com</span> </p>
+                                    class="text-success">untubogang80@gmail.com</span> </p>
                                 </div>
                                 <div class="custome-radio">
                                     <input class="form-check-input" type="radio" name="payment_option"
